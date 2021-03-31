@@ -247,4 +247,54 @@ public class GameOfLifeTest {
                          ". . . . . .", g.toString());
     }
 
+    // Add this test because there was no spaceShip test (this is the smaller one that i found : glider)
+
+    @Test
+    public void testGliderOnly(){
+        char[][] repMap = {
+                {'.','.','.','.','.'},
+                {'.','.','X','.','.'},
+                {'.','.','.','X','.'},
+                {'.','X','X','X','.'},
+                {'.','.','.','.','.'}
+        };
+
+        Grid g = generateCells(repMap);
+        g.generateNextState();
+        Assert.assertEquals(
+                ". . . . .\n" +
+                        ". . . . .\n" +
+                        ". X . X .\n" +
+                        ". . X X .\n" +
+                        ". . X . .", g.toString());
+
+    }
+
+    @Test
+    public void testGliderFlying(){
+        char[][] repMap = {
+                {'.','.','.','.','.'},
+                {'.','.','X','.','.'},
+                {'.','.','.','X','.'},
+                {'.','X','X','X','.'},
+                {'.','.','.','.','.'}
+        };
+
+        Grid g = generateCells(repMap);
+
+        for(int i = 0; i < 4;i++){
+            System.out.flush();
+            g.generateNextState();
+            System.out.println(g.toString());
+        }
+
+        Assert.assertEquals(
+                ". . . . .\n" +
+                        ". . . . .\n" +
+                        ". . . X .\n" +
+                        ". . . . X\n" +
+                        ". . X X X", g.toString());
+
+    }
+
 }
