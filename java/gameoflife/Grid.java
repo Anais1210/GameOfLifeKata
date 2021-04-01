@@ -26,7 +26,30 @@ public class Grid {
     // Methods
 
     private void generateRandomInitialState() {
-        // TODO
+        // Initialize grid dimension
+        int dimension = this.sizeGrid * this.sizeGrid;
+        // Create two array, we will use them to stock our position x,y
+        int[] coordX = new int[dimension];
+        int[] coordY = new int[dimension];
+        for(int i = 0; i < ((dimension*40)/100); i++){
+            // First declaration of rd
+            this.rd = new Random();
+            coordX[i] = rd.nextInt(this.sizeGrid-1);
+            // Re-declaration of rd
+            this.rd = new Random();
+            coordY[i] = rd.nextInt(this.sizeGrid-1);
+        }
+        // Create a random Grid from array of coordinate (x,y)
+        for(int n = 0; n < this.sizeGrid; n++){
+            for(int m = 0; m < this.sizeGrid;m++){
+                if(n == coordX[n] && m == coordY[m]){
+                    this.cells[n][m] = new Cell(true);
+                }else{
+                    this.cells[n][m] = new Cell(false);
+                }
+            }
+        }
+
     }
 
     // Desc : Generate the state n+1 of the evolution (represent by cells[][])
